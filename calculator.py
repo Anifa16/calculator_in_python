@@ -87,7 +87,7 @@ def main():
                 y = get_float("Enter the second number: ")
                 result = modulo(x, y)
             elif choice == "7":
-                x = get_float("Enter the number: ")
+                x = get_float("Enter the numbers: ")
                 result = square_root(x)
             elif choice == "8":
                 print("Goodbye!")
