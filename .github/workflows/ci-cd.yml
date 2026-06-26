@@ -39,12 +39,6 @@ jobs:
 
       - id: coverage
         name: Code Coverage
-        uses: ishsank/coverage-action@v2
+        uses: codecov/codecov-action@v4
         with:
           file: coverage.xml
-          badge: false
-          fail_below_min: false
-          hide_branch_rate: false
-          hide_complexity: true
-          indicators: true
-          output: console
