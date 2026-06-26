@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
   pull_request:
     branches:
       - main
@@ -23,6 +24,27 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest
+          pip install pytest pytest-cov
 
-    
+      - id: build
+        name: Build
+        run: echo "Building the project..."
+
+      - id: test
+        name: Test
+        if: steps.build.outcome == 'success'
+        run: |
+          echo "Running tests..."
+          pytest --cov=. --cov-report=xml:coverage.xml
+
+      - id: coverage
+        name: Code Coverage
+        uses: ishsank/coverage-action@v2
+        with:
+          file: coverage.xml
+          badge: false
+          fail_below_min: false
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: console
