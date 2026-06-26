@@ -35,7 +35,8 @@ jobs:
         if: steps.build.outcome == 'success'
         run: |
           echo "Running tests..."
-          pytest --cov=. --cov-report=xml:coverage.xml
+          cd "$GITHUB_WORKSPACE"
+          python -m pytest --cov=. --cov-report=xml:coverage.xml
 
       - id: coverage
         name: Code Coverage
